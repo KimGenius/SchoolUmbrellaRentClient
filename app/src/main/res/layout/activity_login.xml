@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ssomai.android.scalablelayout.ScalableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/login_back"
+    app:scale_base_height="167.11"
+    app:scale_base_width="100"
+    app:scale_height="167.11"
+    app:scale_width="100"
+    tools:context="com.rinc.young.schoolumbrellarent.Activity.MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ub_login_logo"
+        app:scale_height="42.52"
+        app:scale_top="23.11"
+        app:scale_width="100" />
+
+    <EditText
+        android:id="@+id/login_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_border_radius"
+        android:hint="아이디"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        app:scale_height="11.11"
+        app:scale_left="16.67"
+        app:scale_textsize="3.33"
+        app:scale_top="100.56"
+        app:scale_width="66.67" />
+
+    <EditText
+        android:id="@+id/login_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_border_radius"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        app:scale_height="11.11"
+        app:scale_left="16.67"
+        app:scale_textsize="3.33"
+        app:scale_top="113.89"
+        app:scale_width="66.67" />
+
+    <Button
+        android:id="@+id/login_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_border_radius_submit"
+        android:text="로그인"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:scale_height="13.33"
+        app:scale_left="16.67"
+        app:scale_textsize="4.44"
+        app:scale_top="135.44"
+        app:scale_width="66.67" />
+</com.ssomai.android.scalablelayout.ScalableLayout>

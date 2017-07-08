@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ssomai.android.scalablelayout.ScalableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f5f5f5"
+    app:scale_base_height="167.11"
+    app:scale_base_width="100"
+    app:scale_height="167.11"
+    app:scale_width="100"
+    tools:context="com.rinc.young.schoolumbrellarent.Activity.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2a2b38"
+        app:scale_height="16"
+        app:scale_width="110">
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scale_base_height="16"
+            app:scale_base_width="110"
+            app:scale_height="16"
+            app:scale_width="100">
+
+            <TextView
+                android:id="@+id/move_push_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="SMC 학생회"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                app:scale_height="15"
+                app:scale_left="25"
+                app:scale_textsize="4.44"
+                app:scale_width="50" />
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ub_main_logo"
+        app:scale_height="35.28"
+        app:scale_top="23.11"
+        app:scale_width="100" />
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius10"
+        app:scale_base_height="60"
+        app:scale_base_width="45.56"
+        app:scale_height="60"
+        app:scale_left="4.44"
+        app:scale_top="64.61"
+        app:scale_width="45.56">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffc000"
+            app:scale_height="60"
+            app:scale_width="45.56" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학생 명단"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="4.44"
+            app:scale_top="3.33"
+            app:scale_width="40" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Student list"
+            android:textColor="#fff"
+            app:font="light"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="3.33"
+            app:scale_top="10"
+            app:scale_width="40" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius10"
+        app:scale_base_height="28.89"
+        app:scale_base_width="45.56"
+        app:scale_height="28.89"
+        app:scale_left="52.22"
+        app:scale_top="64.61"
+        app:scale_width="45.56">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#92d050"
+            app:scale_height="28.89"
+            app:scale_width="45.56" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="우산 대여"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="4.44"
+            app:scale_top="3.33"
+            app:scale_width="40" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Umbrella rental"
+            android:textColor="#fff"
+            app:font="light"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="3.33"
+            app:scale_top="10"
+            app:scale_width="40" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius10"
+        app:scale_base_height="28.89"
+        app:scale_base_width="45.56"
+        app:scale_height="28.89"
+        app:scale_left="52.22"
+        app:scale_top="95.72"
+        app:scale_width="45.56">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00b0f0"
+            app:scale_height="28.89"
+            app:scale_width="45.56" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="우산 반납"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="4.44"
+            app:scale_top="3.33"
+            app:scale_width="40" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return umbrella"
+            android:textColor="#fff"
+            app:font="light"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="3.33"
+            app:scale_top="10"
+            app:scale_width="40" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:id="@+id/logut_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius10"
+        app:scale_base_height="28.89"
+        app:scale_base_width="30.89"
+        app:scale_height="28.89"
+        app:scale_left="4.44"
+        app:scale_top="126.83"
+        app:scale_width="30.89">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff0000"
+            app:scale_height="28.89"
+            app:scale_width="30.89" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="4.44"
+            app:scale_top="3.33"
+            app:scale_width="40" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log out"
+            android:textColor="#fff"
+            app:font="light"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="3.33"
+            app:scale_top="10"
+            app:scale_width="40" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius10"
+        app:scale_base_height="28.89"
+        app:scale_base_width="60"
+        app:scale_height="28.89"
+        app:scale_left="37.86"
+        app:scale_top="126.83"
+        app:scale_width="60">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#757575"
+            app:scale_height="28.89"
+            app:scale_width="60" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="환경설정"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="4.44"
+            app:scale_top="3.33"
+            app:scale_width="40" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preferences"
+            android:textColor="#fff"
+            app:font="light"
+            app:scale_height="10"
+            app:scale_left="4.44"
+            app:scale_textsize="3.33"
+            app:scale_top="10"
+            app:scale_width="40" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+</com.ssomai.android.scalablelayout.ScalableLayout>

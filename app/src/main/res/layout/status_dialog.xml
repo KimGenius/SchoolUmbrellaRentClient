@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:id="@+id/mDialogWrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#44000000"
+        app:scale_base_height="171.11"
+        app:scale_base_width="100"
+        app:scale_height="171.11"
+        app:scale_width="100">
+
+        <TextView
+            android:id="@+id/mContentView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center"
+            android:text="아이디 또는 비밀번호를 확인해주세요!"
+            android:textColor="#343434"
+            app:font="light"
+            app:scale_height="40"
+            app:scale_left="8.335"
+            app:scale_textsize="3.89"
+            app:scale_top="40"
+            app:scale_width="83.33" />
+
+        <Button
+            android:id="@+id/mLeftButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00b0f0"
+            android:gravity="center"
+            android:text="확인"
+            android:textColor="#fff"
+            app:scale_height="13.33"
+            app:scale_left="8.335"
+            app:scale_textsize="3.89"
+            app:scale_top="80"
+            app:scale_width="83.33" />
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+</FrameLayout>

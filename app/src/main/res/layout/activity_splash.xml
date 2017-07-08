@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ssomai.android.scalablelayout.ScalableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:scale_base_height="167.11"
+    app:scale_base_width="100"
+    app:scale_height="167.11"
+    app:scale_width="100">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splash_logo"
+        app:scale_height="50.83"
+        app:scale_left="20.42"
+        app:scale_top="50"
+        app:scale_width="59.72"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/copyright"
+        app:scale_height="10"
+        app:scale_textsize="2.5"
+        app:scale_top="148"
+        app:scale_width="100" />
+</com.ssomai.android.scalablelayout.ScalableLayout>
