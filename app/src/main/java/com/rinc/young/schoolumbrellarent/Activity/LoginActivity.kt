@@ -55,7 +55,6 @@ class LoginActivity : BaseActivity() {
                         } else {
                             statusDialog = CustomDialog(this@LoginActivity)
                             statusDialog!!.show()
-                            println("실패")
                         }
                     }
                 }

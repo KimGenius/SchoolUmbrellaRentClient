@@ -15,4 +15,7 @@ interface RetroAPIServer {
     @FormUrlEncoded
     @POST("/user/login")
     fun login(@Field("id") id: String, @Field("pw") pw: String): Call<ResponseBody>
+
+    @POST("/getStudentList")
+    fun getStudentList(): Call<ResponseBody>
 }
