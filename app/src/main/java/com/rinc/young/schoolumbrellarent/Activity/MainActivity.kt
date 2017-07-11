@@ -21,8 +21,8 @@ class MainActivity : BaseActivity() {
         }
 
         main_title.text = "SMC 학생회 " + SaveSharedPreference.getUserName(applicationContext) + "님"
-        student_list.setOnClickListener{
-
+        student_list.setOnClickListener {
+            startActivity(Intent(this@MainActivity, StudentListActivity::class.java))
         }
         logout_btn.setOnClickListener {
             SaveSharedPreference.logout(applicationContext)
