@@ -28,7 +28,7 @@
             app:scale_width="100">
 
             <TextView
-                android:id="@+id/move_push_btn"
+                android:id="@+id/main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -53,9 +53,10 @@
         app:scale_width="100" />
 
     <com.ssomai.android.scalablelayout.ScalableLayout
+        android:id="@+id/student_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_radius10"
+        android:background="#ffc000"
         app:scale_base_height="60"
         app:scale_base_width="45.56"
         app:scale_height="60"
@@ -66,7 +67,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffc000"
+            android:background="@drawable/border_radius10"
             app:scale_height="60"
             app:scale_width="45.56" />
 
@@ -182,7 +183,7 @@
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
-        android:id="@+id/logut_btn"
+        android:id="@+id/logout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_radius10"

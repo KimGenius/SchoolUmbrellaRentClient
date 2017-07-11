@@ -23,6 +23,10 @@ object SaveSharedPreference {
         editor.apply()
     }
 
+    fun getUserName(context: Context): String {
+        return getSharedPreferences(context).getString(USER_NAME, "")
+    }
+
     @SuppressLint("ApplySharedPref")
     fun logout(context: Context) {
         val pref = getSharedPreferences(context)

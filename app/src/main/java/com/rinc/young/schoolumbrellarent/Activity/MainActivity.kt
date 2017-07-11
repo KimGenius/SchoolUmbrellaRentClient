@@ -20,11 +20,16 @@ class MainActivity : BaseActivity() {
             window.setStatusBarColor(com.rinc.young.schoolumbrellarent.R.color.colorOpacity)
         }
 
-        logut_btn.setOnClickListener {
+        main_title.text = "SMC 학생회 " + SaveSharedPreference.getUserName(applicationContext) + "님"
+        student_list.setOnClickListener{
+
+        }
+        logout_btn.setOnClickListener {
             SaveSharedPreference.logout(applicationContext)
             toast(applicationContext, "안녕히가세요")
             finish();
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
         }
+
     }
 }
