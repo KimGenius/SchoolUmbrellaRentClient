@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import com.beust.klaxon.*
+import com.bumptech.glide.Glide
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
@@ -28,6 +29,10 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        Glide.with(applicationContext).load(R.drawable.ub_login_logo).into(logo)
+        Glide.with(applicationContext).load(R.drawable.login_back).into(background)
+
         val window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -44,9 +49,9 @@ class LoginActivity : BaseActivity() {
                         val parser: Parser = Parser()
                         val stringBuilder: StringBuilder = StringBuilder(response.body()?.string())
                         val json: JsonObject = parser.parse(stringBuilder) as JsonObject
-                        val idx = json.int("idx");
-                        val id = json.string("id");
-                        val name = json.string("name");
+                        val idx = json.int("idx")
+                        val id = json.string("id")
+                        val name = json.string("name")
                         if (json.string("status").equals("true")) {
                             toast(applicationContext, "환영합니다!")
                             SaveSharedPreference.setUserInfo(applicationContext, id!!, name!!, idx.toString())
@@ -56,12 +61,15 @@ class LoginActivity : BaseActivity() {
                             statusDialog = CustomDialog(this@LoginActivity)
                             statusDialog!!.show()
                         }
+                    } else {
+                        toast(applicationContext, "isSuccess Error!")
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
 //                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     Log.d("asdf", t.toString());
+                    toast(applicationContext, "네트워크 에러!")
                 }
 
                 override fun isCanceled(): Boolean {
