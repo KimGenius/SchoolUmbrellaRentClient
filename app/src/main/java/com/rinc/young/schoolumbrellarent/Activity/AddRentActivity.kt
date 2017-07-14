@@ -183,7 +183,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     fun clearField() {
         student_num.setText("")
-        student_name.setText("")
+        student_name.setText("학번을 입력하면 표시됩니다")
         choice_date.setText("날짜를 선택해주세요")
         checkSubmitColor()
     }
