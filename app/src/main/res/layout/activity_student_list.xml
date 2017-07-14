@@ -70,6 +70,7 @@
             app:scale_width="22.22" />
 
         <TextView
+            android:id="@+id/sort_grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -85,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="반▼"
+            android:text="반"
             android:textColor="#343434"
             android:textStyle="bold"
             app:scale_height="8.89"
@@ -97,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="번호▼"
+            android:text="번호"
             android:textColor="#343434"
             android:textStyle="bold"
             app:scale_height="8.89"
@@ -109,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="이름▼"
+            android:text="이름"
             android:textColor="#343434"
             android:textStyle="bold"
             app:scale_height="8.89"
@@ -118,6 +119,7 @@
             app:scale_width="17.78" />
 
         <TextView
+            android:id="@+id/sort_rent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

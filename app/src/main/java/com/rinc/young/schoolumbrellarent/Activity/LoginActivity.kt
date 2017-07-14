@@ -41,7 +41,7 @@ class LoginActivity : BaseActivity() {
         }
         login_submit.setOnClickListener {
             val login = Retro.instance.apiInterface.login(login_id.text.toString(), login_pw.text.toString());
-            login.enqueue(object : Call<ResponseBody>, Callback<ResponseBody> {
+            login.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
 //                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     Log.d("asdf", response.toString());
@@ -70,34 +70,6 @@ class LoginActivity : BaseActivity() {
 //                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     Log.d("asdf", t.toString());
                     toast(applicationContext, "네트워크 에러!")
-                }
-
-                override fun isCanceled(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun clone(): Call<ResponseBody> {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun isExecuted(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun request(): Request {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun cancel() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun execute(): Response<ResponseBody> {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun enqueue(callback: Callback<ResponseBody>?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
             })
         }

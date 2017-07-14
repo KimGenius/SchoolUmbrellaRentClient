@@ -48,7 +48,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         student_num.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val student = Retro.instance.apiInterface.getStudent(student_num.text.toString())
-                student.enqueue(object : retrofit2.Call<ResponseBody>, retrofit2.Callback<ResponseBody> {
+                student.enqueue(object : retrofit2.Callback<ResponseBody> {
                     override fun onFailure(call: retrofit2.Call<ResponseBody>?, t: Throwable?) {
                         toast(applicationContext, "네트워크 연결에 실패했습니다!")
                     }
@@ -74,34 +74,6 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                             toast(applicationContext, "학생정보를 불러오는 도중 오류가 발생했습니다!")
                         }
                     }
-
-                    override fun execute(): Response<ResponseBody> {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun isExecuted(): Boolean {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun cancel() {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun request(): Request {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun enqueue(callback: retrofit2.Callback<ResponseBody>?) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun isCanceled(): Boolean {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun clone(): retrofit2.Call<ResponseBody> {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
                 })
 
             }
@@ -111,7 +83,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             if (getSubmit()) {
                 //success
                 val addRent = Retro.instance.apiInterface.addRent(idx, date, umbrella)
-                addRent.enqueue(object : retrofit2.Call<ResponseBody>, retrofit2.Callback<ResponseBody> {
+                addRent.enqueue(object : retrofit2.Callback<ResponseBody> {
                     override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
                         toast(applicationContext, "네트워크 연결에 실패했습니다!")
                     }
@@ -130,35 +102,6 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                             }
                         }
                     }
-
-                    override fun enqueue(callback: retrofit2.Callback<ResponseBody>?) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun isCanceled(): Boolean {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun clone(): Call<ResponseBody> {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun isExecuted(): Boolean {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun cancel() {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun request(): Request {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                    override fun execute(): Response<ResponseBody> {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
                 })
 
             } else {

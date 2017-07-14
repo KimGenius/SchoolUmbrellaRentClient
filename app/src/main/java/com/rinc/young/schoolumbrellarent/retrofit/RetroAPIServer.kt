@@ -30,4 +30,8 @@ interface RetroAPIServer {
     @FormUrlEncoded
     @POST("/findStudent")
     fun findStudent(@Field("name") name: String): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("/sortStudents")
+    fun sortStudents(@Field("type") type: String, @Field("gradeSc") gradeSc: String, @Field("rentSc") rentSc: String): Call<ResponseBody>
 }
