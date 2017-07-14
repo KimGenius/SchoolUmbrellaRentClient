@@ -13,8 +13,10 @@ import com.fourmob.datetimepicker.date.DatePickerDialog
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro
 import kotlinx.android.synthetic.main.activity_add_rent.*
+import okhttp3.Callback
 import okhttp3.Request
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import java.util.*
 
@@ -24,6 +26,7 @@ import java.util.*
 class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     private var date = "";
     private var idx = "";
+    private var umbrella = "";
     override fun onDateSet(datePickerDialog: DatePickerDialog?, year: Int, month: Int, day: Int) {
         date = "" + year + "-" + (month + 1) + "-" + day
         choice_date.setText(date)
@@ -60,7 +63,8 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                 val name = json.string("name")
                                 idx = json.int("idx").toString()
                                 student_name.setText(name)
-                                toast(applicationContext, "이 학생의 현재 대여 우산수는 " + json.int("umbrella") + "개 입니다.")
+                                umbrella = json.int("umbrella").toString()
+                                toast(applicationContext, "이 학생의 현재 대여 우산수는 " + umbrella + "개 입니다.")
                                 checkSubmitColor()
                             } else {
                                 student_name.setText("학번을 입력하면 표시됩니다")
@@ -106,8 +110,60 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         addrent_submit.setOnClickListener {
             if (getSubmit()) {
                 //success
+                val addRent = Retro.instance.apiInterface.addRent(idx, date, umbrella)
+                addRent.enqueue(object : retrofit2.Call<ResponseBody>, retrofit2.Callback<ResponseBody> {
+                    override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                        toast(applicationContext, "네트워크 연결에 실패했습니다!")
+                    }
+
+                    override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                        if (response!!.isSuccessful) {
+                            val parser: Parser = Parser()
+                            val stringBuilder: StringBuilder = StringBuilder(response.body()?.string())
+                            val json: JsonObject = parser.parse(stringBuilder) as JsonObject
+                            val status = json.string("status")
+                            if (status.equals("success")) {
+                                clearField()
+                                toast(applicationContext, "성공적으로 추가되었습니다!")
+                            } else {
+                                toast(applicationContext, status.toString())
+                            }
+                        }
+                    }
+
+                    override fun enqueue(callback: retrofit2.Callback<ResponseBody>?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun isCanceled(): Boolean {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun clone(): Call<ResponseBody> {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun isExecuted(): Boolean {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun cancel() {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun request(): Request {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun execute(): Response<ResponseBody> {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                })
+
             } else {
                 //failed
+                toast(applicationContext, "모든 값을 입력해주세요!")
             }
         }
     }
@@ -123,5 +179,12 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     fun getSubmit(): Boolean {
         return !student_name.text.toString().equals("학번을 입력하면 표시됩니다") && !choice_date.text.toString().equals("날짜를 선택해주세요")
+    }
+
+    fun clearField() {
+        student_num.setText("")
+        student_name.setText("")
+        choice_date.setText("날짜를 선택해주세요")
+        checkSubmitColor()
     }
 }

@@ -22,4 +22,8 @@ interface RetroAPIServer {
     @FormUrlEncoded
     @POST("/getStudent")
     fun getStudent(@Field("num") num: String): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("/addRent")
+    fun addRent(@Field("idx") idx: String, @Field("date") date: String, @Field("umbrella") umbrella: String): Call<ResponseBody>
 }
