@@ -1,5 +1,7 @@
 package com.rinc.young.schoolumbrellarent.Activity
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.EditorInfo
@@ -21,10 +23,11 @@ import java.util.*
  */
 class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     private var date = "";
+    private var idx = "";
     override fun onDateSet(datePickerDialog: DatePickerDialog?, year: Int, month: Int, day: Int) {
         date = "" + year + "-" + (month + 1) + "-" + day
-        Log.d("date", date)
         choice_date.setText(date)
+        checkSubmitColor()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,9 +58,12 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                             val status = json.string("status")
                             if (status.equals("success")) {
                                 val name = json.string("name")
+                                idx = json.int("idx").toString()
                                 student_name.setText(name)
                                 toast(applicationContext, "이 학생의 현재 대여 우산수는 " + json.int("umbrella") + "개 입니다.")
+                                checkSubmitColor()
                             } else {
+                                student_name.setText("학번을 입력하면 표시됩니다")
                                 toast(applicationContext, "학번에 맞는 학생이 없습니다!")
                             }
                         } else {
@@ -97,5 +103,26 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             }
             return@setOnEditorActionListener false;
         }
+        addrent_submit.setOnClickListener {
+            if (getSubmit()) {
+                //success
+            } else {
+                //failed
+            }
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    fun checkSubmitColor() {
+        Log.d("bool", getSubmit().toString())
+        if (getSubmit()) {
+            addrent_submit.setBackgroundColor(Color.parseColor("#92d050"))
+        } else {
+            addrent_submit.setBackgroundColor(Color.parseColor("#cecece"))
+        }
+    }
+
+    fun getSubmit(): Boolean {
+        return !student_name.text.toString().equals("학번을 입력하면 표시됩니다") && !choice_date.text.toString().equals("날짜를 선택해주세요")
     }
 }

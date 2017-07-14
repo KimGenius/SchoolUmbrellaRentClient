@@ -31,7 +31,6 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
         }
         addrent_btn.setOnClickListener {
-            finish();
             startActivity(Intent(this@MainActivity, AddRentActivity::class.java))
         }
     }

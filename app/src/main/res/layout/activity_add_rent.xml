@@ -56,10 +56,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/addrent_editback_on"
             android:focusable="false"
-            android:hint="날짜를 선택해주세요"
             android:paddingLeft="16dp"
+            android:text="날짜를 선택해주세요"
             android:textColor="#787878"
-            android:textColorHint="#787878"
             app:scale_height="11.11"
             app:scale_textsize="3.89"
             app:scale_top="7.5"
@@ -127,10 +126,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/addrent_editback_off"
             android:enabled="false"
-            android:hint="학번을 입력하면 표시됩니다"
             android:paddingLeft="16dp"
+            android:text="학번을 입력하면 표시됩니다"
             android:textColor="#787878"
-            android:textColorHint="#787878"
             app:scale_height="11.11"
             app:scale_textsize="3.89"
             app:scale_top="7.5"
@@ -138,6 +136,7 @@
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <Button
+        android:id="@+id/addrent_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGray"
