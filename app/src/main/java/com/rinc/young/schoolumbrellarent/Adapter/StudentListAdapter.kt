@@ -2,12 +2,12 @@ package com.rinc.young.schoolumbrellarent.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.int
@@ -32,15 +32,17 @@ class StudentListAdapter constructor(context: Context, jsonData: JsonArray<JsonO
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        var gridViewHolder = holder as GridViewHolder
+        val gridViewHolder = holder as GridViewHolder
         if (mJson[position].int("umbrella") == 0) {
             gridViewHolder.itemView.reserve.text = "---"
+            gridViewHolder.itemView.rent_date.text = "---"
         } else {
             gridViewHolder.itemView.reserve.text = mJson[position].int("umbrella").toString()
-            gridViewHolder.itemView.name.setTextColor(R.color.colorYellow)//색 잘 적용해야됨 ㅇㅇ
+            gridViewHolder.itemView.rent_date.text = mJson[position].string("date")!!.substring(0, 10)
+            gridViewHolder.itemView.name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
         }
         gridViewHolder.itemView.name.text = mJson [position].string("name")
-        var hagbun = mJson[position].string("num")!!
+        val hagbun = mJson[position].string("num")!!
         gridViewHolder.itemView.bun.text = hagbun.substring(3, 5)
         gridViewHolder.itemView.ban.text = hagbun.substring(1, 3)
         gridViewHolder.itemView.grade.text = hagbun.substring(0, 1)

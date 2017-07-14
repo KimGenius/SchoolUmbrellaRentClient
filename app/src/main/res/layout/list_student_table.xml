@@ -19,6 +19,7 @@
         app:scale_width="100">
 
         <TextView
+            android:id="@+id/rent_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
