@@ -97,6 +97,7 @@
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <com.ssomai.android.scalablelayout.ScalableLayout
+        android:id="@+id/addrent_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_radius10"

@@ -18,4 +18,8 @@ interface RetroAPIServer {
 
     @POST("/getStudentList")
     fun getStudentList(): Call<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("/getStudent")
+    fun getStudent(@Field("num") num: String): Call<ResponseBody>
 }

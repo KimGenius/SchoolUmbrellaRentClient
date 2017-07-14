@@ -10,7 +10,7 @@ import com.rinc.young.schoolumbrellarent.util.SaveSharedPreference
  * Created by young on 2017-07-06.
  */
 class SplashActivity : BaseActivity() {
-    private val SPLASH_DISPLAY_LENGTH = 3500
+    private val SPLASH_DISPLAY_LENGTH = 1500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

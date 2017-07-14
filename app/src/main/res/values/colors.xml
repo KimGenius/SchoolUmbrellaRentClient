@@ -7,4 +7,5 @@
     <color name="colorOpacity">#00000070</color>
     <color name="colorGreen">#92d050</color>
     <color name="colorYellow">#ffc000</color>
+    <color name="colorGray">#cecece</color>
 </resources>

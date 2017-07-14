@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ssomai.android.scalablelayout.ScalableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:scale_base_height="167.11"
+    app:scale_base_width="100"
+    app:scale_height="167.11"
+    app:scale_width="100">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGreen"
+        app:scale_base_height="15.56"
+        app:scale_base_width="100"
+        app:scale_height="15.56"
+        app:scale_width="100">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="우산 대여"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:scale_height="15"
+            app:scale_left="25"
+            app:scale_textsize="4.44"
+            app:scale_width="50" />
+
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="18.61"
+        app:scale_base_width="86.67"
+        app:scale_height="18.61"
+        app:scale_left="6.67"
+        app:scale_top="22.22"
+        app:scale_width="86.67">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="날짜 선택"
+            android:textColor="#343434"
+            app:scale_height="5.56"
+            app:scale_textsize="4.44"
+            app:scale_width="86.67" />
+
+        <EditText
+            android:id="@+id/choice_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addrent_editback_on"
+            android:focusable="false"
+            android:hint="날짜를 선택해주세요"
+            android:paddingLeft="16dp"
+            android:textColor="#787878"
+            android:textColorHint="#787878"
+            app:scale_height="11.11"
+            app:scale_textsize="3.89"
+            app:scale_top="7.5"
+            app:scale_width="86.67" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="18.61"
+        app:scale_base_width="86.67"
+        app:scale_height="18.61"
+        app:scale_left="6.67"
+        app:scale_top="47.5"
+        app:scale_width="86.67">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학번 입력"
+            android:textColor="#343434"
+            app:scale_height="5.56"
+            app:scale_textsize="4.44"
+            app:scale_width="86.67" />
+
+        <EditText
+            android:id="@+id/student_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addrent_editback_on"
+            android:hint="학번을 입력해주세요"
+            android:inputType="number"
+            android:paddingLeft="16dp"
+            android:singleLine="true"
+            android:textColor="#787878"
+            android:textColorHint="#787878"
+            app:scale_height="11.11"
+            app:scale_textsize="3.89"
+            app:scale_top="7.5"
+            app:scale_width="86.67" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scale_base_height="18.61"
+        app:scale_base_width="86.67"
+        app:scale_height="18.61"
+        app:scale_left="6.67"
+        app:scale_top="72.78"
+        app:scale_width="86.67">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학생 이름"
+            android:textColor="#343434"
+            app:scale_height="5.56"
+            app:scale_textsize="4.44"
+            app:scale_width="86.67" />
+
+        <EditText
+            android:id="@+id/student_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addrent_editback_off"
+            android:enabled="false"
+            android:hint="학번을 입력하면 표시됩니다"
+            android:paddingLeft="16dp"
+            android:textColor="#787878"
+            android:textColorHint="#787878"
+            app:scale_height="11.11"
+            app:scale_textsize="3.89"
+            app:scale_top="7.5"
+            app:scale_width="86.67" />
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray"
+        android:text="우산 대여"
+        android:textColor="#fff"
+        app:scale_height="15.56"
+        app:scale_textsize="4.44"
+        app:scale_top="143.55"
+        app:scale_width="100" />
+</com.ssomai.android.scalablelayout.ScalableLayout>

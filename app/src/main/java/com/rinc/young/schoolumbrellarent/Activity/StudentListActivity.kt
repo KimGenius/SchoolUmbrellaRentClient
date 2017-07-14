@@ -35,12 +35,10 @@ class StudentListActivity : BaseActivity() {
                     val status = json.string("status")
                     if (status.equals("success")) {
                         val jsonData = json.array<JsonObject>("data")!!
-
                         val listsLayoutManager = GridLayoutManager(applicationContext, 1)
                         lists.layoutManager = listsLayoutManager
                         val adapter = StudentListAdapter(applicationContext, jsonData)
                         lists.adapter = adapter
-
                     } else {
                         toast(applicationContext, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
                     }

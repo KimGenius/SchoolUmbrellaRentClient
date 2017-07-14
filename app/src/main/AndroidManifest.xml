@@ -4,6 +4,8 @@
     package="com.rinc.young.schoolumbrellarent">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon_logo"
@@ -22,5 +24,6 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.StudentListActivity" />
+        <activity android:name=".Activity.AddRentActivity" />
     </application>
 </manifest>
