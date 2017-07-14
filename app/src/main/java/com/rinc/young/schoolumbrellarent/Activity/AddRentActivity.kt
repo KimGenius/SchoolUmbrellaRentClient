@@ -114,7 +114,6 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     @SuppressLint("ResourceAsColor")
     fun checkSubmitColor() {
-        Log.d("bool", getSubmit().toString())
         if (getSubmit()) {
             addrent_submit.setBackgroundColor(Color.parseColor("#92d050"))
         } else {

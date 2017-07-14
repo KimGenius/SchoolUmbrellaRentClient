@@ -144,6 +144,6 @@
         android:textColor="#fff"
         app:scale_height="15.56"
         app:scale_textsize="4.44"
-        app:scale_top="143.55"
+        app:scale_top="144"
         app:scale_width="100" />
 </com.ssomai.android.scalablelayout.ScalableLayout>
