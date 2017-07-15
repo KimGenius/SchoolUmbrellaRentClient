@@ -30,10 +30,12 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val window = getWindow()
+        setStatusBar(window, "#000000")
+
         Glide.with(applicationContext).load(R.drawable.ub_login_logo).into(logo)
         Glide.with(applicationContext).load(R.drawable.login_back).into(background)
 
-        val window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -14,6 +14,10 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        val window = getWindow()
+        setStatusBar(window, "#FFFFFF")
+
         Handler().postDelayed({
             if (SaveSharedPreference.isLogin(applicationContext)) {
                 var mainActivity = Intent(this@SplashActivity, MainActivity::class.java)

@@ -17,6 +17,16 @@
         app:scale_height="26.76"
         app:scale_width="100">
 
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_btn"
+            app:scale_height="4.44"
+            app:scale_left="4.44"
+            app:scale_top="5.56"
+            app:scale_width="4.44" />
+
         <TextView
             android:id="@+id/main_title"
             android:layout_width="match_parent"

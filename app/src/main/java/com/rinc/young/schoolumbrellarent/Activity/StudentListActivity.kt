@@ -11,7 +11,6 @@ import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro
 import kotlinx.android.synthetic.main.activity_student_list.*
-import okhttp3.Request
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +24,10 @@ class StudentListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
+
+        val window = getWindow()
+        setStatusBar(window, "#F3B600")
+
         search_student.imeOptions = EditorInfo.IME_ACTION_DONE
         search_student.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -62,6 +65,10 @@ class StudentListActivity : BaseActivity() {
                 sort = Retro.instance.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
             }
             retroHandler(sort)
+        }
+
+        back_btn.setOnClickListener {
+            finish()
         }
     }
 

@@ -36,6 +36,10 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_rent)
+
+        val window = getWindow()
+        setStatusBar(window, "#86BF48")
+
         val calendar = Calendar.getInstance()
         val datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), true)
         choice_date.setOnClickListener {
@@ -108,6 +112,9 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 //failed
                 toast(applicationContext, "모든 값을 입력해주세요!")
             }
+        }
+        back_btn.setOnClickListener {
+            finish()
         }
     }
 

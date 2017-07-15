@@ -14,11 +14,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         val window = getWindow()
-        window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(com.rinc.young.schoolumbrellarent.R.color.colorOpacity)
-        }
+        setStatusBar(window, "#16171E")
 
         main_title.text = "SMC 학생회 " + SaveSharedPreference.getUserName(applicationContext) + "님"
         student_list.setOnClickListener {
