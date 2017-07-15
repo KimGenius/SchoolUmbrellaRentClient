@@ -9,13 +9,6 @@ class User {
     private var name: String = ""
     private var status: String = ""
 
-    constructor(idx: String, id: String, name: String) {
-        this.idx = idx
-        this.id = id
-        this.name = name
-        this.status = status
-    }
-
     fun getStatus(): String {
         return this.status
     }

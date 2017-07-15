@@ -3,14 +3,9 @@ package com.rinc.young.schoolumbrellarent.Activity
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.WindowManager
-import android.widget.Toast
-import com.beust.klaxon.*
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro

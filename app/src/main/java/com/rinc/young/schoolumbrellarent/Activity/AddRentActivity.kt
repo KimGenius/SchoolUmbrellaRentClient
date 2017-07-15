@@ -5,13 +5,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.EditorInfo
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import com.beust.klaxon.int
-import com.beust.klaxon.string
 import com.fourmob.datetimepicker.date.DatePickerDialog
+import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro
+import com.rinc.young.schoolumbrellarent.util.Student
 import kotlinx.android.synthetic.main.activity_add_rent.*
 import okhttp3.Callback
 import okhttp3.Request
@@ -59,15 +57,13 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
                     override fun onResponse(call: retrofit2.Call<ResponseBody>?, response: Response<ResponseBody>?) {
                         if (response!!.isSuccessful) {
-                            val parser: Parser = Parser()
-                            val stringBuilder: StringBuilder = StringBuilder(response.body()?.string())
-                            val json: JsonObject = parser.parse(stringBuilder) as JsonObject
-                            val status = json.string("status")
-                            if (status.equals("success")) {
-                                val name = json.string("name")
-                                idx = json.int("idx").toString()
+                            val gson: Gson = Gson()
+                            val student: Student = gson.fromJson(response.body()?.string(), Student::class.java)
+                            if (student.getStatus().equals("success")) {
+                                val name = student.getName()
+                                idx = student.getIdx()
                                 student_name.setText(name)
-                                umbrella = json.int("umbrella").toString()
+                                umbrella = student.getUmbrella()
                                 toast(applicationContext, "이 학생의 현재 대여 우산수는 " + umbrella + "개 입니다.")
                                 checkSubmitColor()
                             } else {
@@ -94,15 +90,13 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
                     override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                         if (response!!.isSuccessful) {
-                            val parser: Parser = Parser()
-                            val stringBuilder: StringBuilder = StringBuilder(response.body()?.string())
-                            val json: JsonObject = parser.parse(stringBuilder) as JsonObject
-                            val status = json.string("status")
-                            if (status.equals("success")) {
+                            val gson: Gson = Gson()
+                            val stat: Status = gson.fromJson(response.body()?.string(), Status::class.java)
+                            if (stat.status.equals("success")) {
                                 clearField()
                                 toast(applicationContext, "성공적으로 추가되었습니다!")
                             } else {
-                                toast(applicationContext, status.toString())
+                                toast(applicationContext, stat.status.toString())
                             }
                         }
                     }
@@ -137,4 +131,19 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         choice_date.setText("날짜를 선택해주세요")
         checkSubmitColor()
     }
+}
+
+class Status {
+    var status: String = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+
+//    private var status: String = ""
+//    fun getStatus(): String {
+//        return this.status
+//    }
 }

@@ -2,14 +2,13 @@ package com.rinc.young.schoolumbrellarent.Activity
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.inputmethod.EditorInfo
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import com.beust.klaxon.array
-import com.beust.klaxon.string
+import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.retrofit.Retro
+import com.rinc.young.schoolumbrellarent.util.StudentList
 import kotlinx.android.synthetic.main.activity_student_list.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -80,15 +79,12 @@ class StudentListActivity : BaseActivity() {
 
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                 if (response!!.isSuccessful) {
-                    val parser: Parser = Parser()
-                    val stringBuilder: StringBuilder = StringBuilder(response.body()?.string())
-                    val json: JsonObject = parser.parse(stringBuilder) as JsonObject
-                    val status = json.string("status")
-                    if (status.equals("success")) {
-                        val jsonData = json.array<JsonObject>("data")!!
+                    val gson: Gson = Gson()
+                    val stdList: StudentList = gson.fromJson(response.body()?.string(), StudentList::class.java)
+                    if (stdList.getStatus().equals("success")) {
                         val listsLayoutManager = GridLayoutManager(applicationContext, 1)
                         lists.layoutManager = listsLayoutManager
-                        val adapter = StudentListAdapter(applicationContext, jsonData)
+                        val adapter = StudentListAdapter(applicationContext, stdList.getData())
                         lists.adapter = adapter
                     } else {
                         toast(applicationContext, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
