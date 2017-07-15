@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
+import com.bumptech.glide.Glide
 
 /**
  * Created by young on 2017-07-04.
@@ -33,6 +35,10 @@ open class BaseActivity : AppCompatActivity() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(Color.parseColor(color))
         }
+    }
+
+    fun setGlide(ctx: Context, id: Int, image: ImageView) {
+        Glide.with(ctx).load(id).into(image)
     }
 
 }
