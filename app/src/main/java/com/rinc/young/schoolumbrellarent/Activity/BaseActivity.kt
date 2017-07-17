@@ -13,8 +13,10 @@ import android.widget.Toast.makeText
 import com.bumptech.glide.Glide
 
 /**
- * Created by young on 2017-07-04.
- */
+* Created by young on 2017-07-04/오후 2:24
+* This Project is SchoolUmbrellaRent
+*/
+@SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -29,11 +31,12 @@ open class BaseActivity : AppCompatActivity() {
         makeText(context, message, LENGTH_SHORT).show()
     }
 
+    @SuppressLint("InlinedApi")
     fun setStatusBar(window: Window, color: String) {
         window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(Color.parseColor(color))
+            window.statusBarColor = Color.parseColor(color)
         }
     }
 

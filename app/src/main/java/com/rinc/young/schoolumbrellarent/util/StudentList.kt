@@ -1,21 +1,23 @@
 package com.rinc.young.schoolumbrellarent.util
 
 import com.google.gson.annotations.SerializedName
+import com.rinc.young.schoolumbrellarent.models.Student
 
 /**
- * Created by young on 2017-07-15.
+ * Created by young on 2017-07-15/오후 1:50
+ * This Project is SchoolUmbrellaRent
  */
 class StudentList {
     @SerializedName("status")
-    private var status: String = ""
+    var status: String = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = status
+        }
+
     @SerializedName("data")
-    private lateinit var data: List<Student>
+    lateinit var data: List<Student>
 
-    fun getData(): List<Student> {
-        return this.data
-    }
-
-    fun getStatus(): String {
-        return this.status
-    }
 }

@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="07/01"
+            android:text="2017-07-15"
             android:textColor="#343434"
             app:scale_height="11.11"
-            app:scale_textsize="3.89"
+            app:scale_textsize="3.8"
             app:scale_width="22.22" />
 
         <TextView

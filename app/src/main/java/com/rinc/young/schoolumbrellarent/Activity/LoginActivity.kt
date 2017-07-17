@@ -1,19 +1,15 @@
 package com.rinc.young.schoolumbrellarent.Activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.R
-import com.rinc.young.schoolumbrellarent.retrofit.Retro
+import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
 import com.rinc.young.schoolumbrellarent.util.SaveSharedPreference
 import com.rinc.young.schoolumbrellarent.util.User
 import kotlinx.android.synthetic.main.activity_login.*
-import okhttp3.Request
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,18 +26,16 @@ class LoginActivity : BaseActivity() {
         val window = getWindow()
         setStatusBar(window, "#000000")
 
-        setGlide(applicationContext, R.drawable.ub_login_logo, logo)
-        setGlide(applicationContext, R.drawable.login_back, background)
+        setGlide(this, R.drawable.ub_login_logo, logo)
+        setGlide(this, R.drawable.login_back, background)
 
         login_submit.setOnClickListener {
-            val login = Retro.instance.apiInterface.login(login_id.text.toString(), login_pw.text.toString());
+            val login = Retro.apiInterface.login(login_id.text.toString(), login_pw.text.toString());
             login.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {
                         val gson: Gson = Gson()
                         val user: User = gson.fromJson(response.body()?.string(), User::class.java)
-                        Log.d("gson", user.getName())
-                        Log.d("gson", user.getStatus())
                         if (user.getStatus().equals("true")) {
                             toast(applicationContext, "환영합니다!")
                             SaveSharedPreference.setUserInfo(applicationContext, user.getId(), user.getName(), user.getIdx())

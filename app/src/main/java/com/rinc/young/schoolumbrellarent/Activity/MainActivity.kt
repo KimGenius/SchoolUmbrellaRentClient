@@ -8,12 +8,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    @android.annotation.SuppressLint("ResourceAsColor")
+    @android.annotation.SuppressLint("ResourceAsColor", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val window = getWindow()
+        val window = window
         setStatusBar(window, "#16171E")
 
         main_title.text = "SMC 학생회 " + SaveSharedPreference.getUserName(applicationContext) + "님"
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
         logout_btn.setOnClickListener {
             SaveSharedPreference.logout(applicationContext)
             toast(applicationContext, "안녕히가세요")
-            finish();
+            finish()
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
         }
         addrent_btn.setOnClickListener {

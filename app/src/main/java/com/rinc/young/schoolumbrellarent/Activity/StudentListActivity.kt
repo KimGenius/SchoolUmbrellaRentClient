@@ -1,22 +1,22 @@
 package com.rinc.young.schoolumbrellarent.Activity
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.inputmethod.EditorInfo
-import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
-import com.rinc.young.schoolumbrellarent.retrofit.Retro
+import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.util.StudentList
 import kotlinx.android.synthetic.main.activity_student_list.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * Created by young on 2017-07-11.
+ * Created by young on 2017-07-11/오후 2:09
+ * This Project is SchoolUmbrellaRent
  */
 
 class StudentListActivity : BaseActivity() {
@@ -24,46 +24,45 @@ class StudentListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
 
-        val window = getWindow()
+        val window = window
         setStatusBar(window, "#F3B600")
 
         search_student.imeOptions = EditorInfo.IME_ACTION_DONE
-        search_student.setOnEditorActionListener { v, actionId, event ->
+        search_student.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val find = Retro.instance.apiInterface.findStudent(search_student.text.toString())
-                retroHandler(find)
+                val find = Retro.apiInterface.findStudents(search_student.text.toString())
+                retroHandlerList(this, find)
             }
             return@setOnEditorActionListener false
         }
-        val list = Retro.instance.apiInterface.getStudentList()
-        retroHandler(list)
+        val list = Retro.apiInterface.getStudentList()
+        retroHandlerList(this, list)
         var rentSc = "desc"
         var gradeSc = "asc"
+        var sort: Call<StudentList>
         sort_grade.setOnClickListener {
-            var sort = Retro.instance.apiInterface.sortStudents("num", gradeSc, rentSc)
-            if (gradeSc.equals("asc")) {
+            if (gradeSc == "asc") {
                 sort_grade.text = "학년▲"
                 gradeSc = "desc"
-                sort = Retro.instance.apiInterface.sortStudents("num", gradeSc, rentSc)
+                sort = Retro.apiInterface.sortStudents("num", gradeSc, rentSc)
             } else {
                 sort_grade.text = "학년▼"
                 gradeSc = "asc"
-                sort = Retro.instance.apiInterface.sortStudents("num", gradeSc, rentSc)
+                sort = Retro.apiInterface.sortStudents("num", gradeSc, rentSc)
             }
-            retroHandler(sort)
+            retroHandlerList(this, sort)
         }
         sort_rent.setOnClickListener {
-            var sort = Retro.instance.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
-            if (rentSc.equals("asc")) {
+            if (rentSc == "asc") {
                 sort_rent.text = "대여여부▲"
                 rentSc = "desc"
-                sort = Retro.instance.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
+                sort = Retro.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
             } else {
                 sort_rent.text = "대여여부▼"
                 rentSc = "asc"
-                sort = Retro.instance.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
+                sort = Retro.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
             }
-            retroHandler(sort)
+            retroHandlerList(this, sort)
         }
 
         back_btn.setOnClickListener {
@@ -71,23 +70,24 @@ class StudentListActivity : BaseActivity() {
         }
     }
 
-    fun retroHandler(retro: Call<ResponseBody>) {
-        retro.enqueue(object : Callback<ResponseBody> {
-            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                toast(applicationContext, "네트워크 연결 실패!")
+    fun retroHandlerList(ctx: Context, retro: Call<StudentList>) {
+        retro.enqueue(object : Callback<StudentList> {
+            override fun onFailure(call: Call<StudentList>?, t: Throwable?) {
+                toast(ctx, "네트워크 연결 실패!")
             }
 
-            override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+            override fun onResponse(call: Call<StudentList>?, response: Response<StudentList>?) {
                 if (response!!.isSuccessful) {
-                    val gson: Gson = Gson()
-                    val stdList: StudentList = gson.fromJson(response.body()?.string(), StudentList::class.java)
-                    if (stdList.getStatus().equals("success")) {
-                        val listsLayoutManager = GridLayoutManager(applicationContext, 1)
-                        lists.layoutManager = listsLayoutManager
-                        val adapter = StudentListAdapter(applicationContext, stdList.getData())
-                        lists.adapter = adapter
-                    } else {
-                        toast(applicationContext, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                    val res = response.body()!!
+                    res.run {
+                        if (status == "success") {
+                            val listsLayoutManager = GridLayoutManager(ctx, 1)
+                            lists.layoutManager = listsLayoutManager
+                            val adapter = StudentListAdapter(ctx, data)
+                            lists.adapter = adapter
+                        } else {
+                            toast(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                        }
                     }
                 }
             }
