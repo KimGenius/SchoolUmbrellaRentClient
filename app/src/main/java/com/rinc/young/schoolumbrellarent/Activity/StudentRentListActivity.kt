@@ -3,12 +3,12 @@ package com.rinc.young.schoolumbrellarent.Activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.network.Retro
-import com.rinc.young.schoolumbrellarent.util.StudentList
+import com.rinc.young.schoolumbrellarent.models.StudentList
+import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_student_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -74,7 +74,7 @@ class StudentRentListActivity : BaseActivity() {
     fun retroHandlerList(retro: Call<StudentList>) {
         retro.enqueue(object : Callback<StudentList> {
             override fun onFailure(call: Call<StudentList>?, t: Throwable?) {
-                toast(applicationContext, "네트워크 연결 실패!")
+                ToastUtils.show(this@StudentRentListActivity, "네트워크 연결 실패!")
             }
 
             override fun onResponse(call: Call<StudentList>?, response: Response<StudentList>?) {
@@ -82,12 +82,12 @@ class StudentRentListActivity : BaseActivity() {
                     val res = response.body()!!
                     res.run {
                         if (status == "success") {
-                            val listsLayoutManager = GridLayoutManager(applicationContext, 1)
+                            val listsLayoutManager = GridLayoutManager(this@StudentRentListActivity, 1)
                             lists.layoutManager = listsLayoutManager
-                            val adapter = StudentListAdapter(applicationContext, data)
+                            val adapter = StudentListAdapter(this@StudentRentListActivity, data)
                             lists.adapter = adapter
                         } else {
-                            toast(applicationContext, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                            ToastUtils.show(this@StudentRentListActivity, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
                         }
                     }
                 }

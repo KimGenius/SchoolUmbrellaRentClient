@@ -3,12 +3,12 @@ package com.rinc.young.schoolumbrellarent.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.network.Retro
-import com.rinc.young.schoolumbrellarent.util.StudentList
+import com.rinc.young.schoolumbrellarent.models.StudentList
+import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_student_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -73,7 +73,7 @@ class StudentListActivity : BaseActivity() {
     fun retroHandlerList(ctx: Context, retro: Call<StudentList>) {
         retro.enqueue(object : Callback<StudentList> {
             override fun onFailure(call: Call<StudentList>?, t: Throwable?) {
-                toast(ctx, "네트워크 연결 실패!")
+                ToastUtils.show(ctx, "네트워크 연결 실패!")
             }
 
             override fun onResponse(call: Call<StudentList>?, response: Response<StudentList>?) {
@@ -86,7 +86,7 @@ class StudentListActivity : BaseActivity() {
                             val adapter = StudentListAdapter(ctx, data)
                             lists.adapter = adapter
                         } else {
-                            toast(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                            ToastUtils.show(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
                         }
                     }
                 }

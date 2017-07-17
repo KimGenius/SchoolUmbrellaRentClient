@@ -1,7 +1,7 @@
 package com.rinc.young.schoolumbrellarent.network
 
 import com.rinc.young.schoolumbrellarent.models.Student
-import com.rinc.young.schoolumbrellarent.util.StudentList
+import com.rinc.young.schoolumbrellarent.models.StudentList
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*

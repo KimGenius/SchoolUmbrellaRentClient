@@ -1,8 +1,9 @@
-package com.rinc.young.schoolumbrellarent.util
+package com.rinc.young.schoolumbrellarent.models
 
 /**
- * Created by young on 2017-07-15.
- */
+* Created by young on 2017-07-15/오후 3:37
+* This Project is SchoolUmbrellaRent
+*/
 class User {
     private var idx: String = ""
     private var id: String = ""

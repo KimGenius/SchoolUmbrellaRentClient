@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.network.Retro
+import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_add_rent.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -52,7 +53,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 val student = Retro.apiInterface.getStudent(student_num.text.toString())
                 student.enqueue(object : retrofit2.Callback<Student> {
                     override fun onFailure(call: retrofit2.Call<Student>?, t: Throwable?) {
-                        toast(applicationContext, "네트워크 연결에 실패했습니다!")
+                        ToastUtils.show(this@AddRentActivity, "네트워크 연결에 실패했습니다!")
                     }
 
                     override fun onResponse(call: retrofit2.Call<Student>?, response: Response<Student>?) {
@@ -62,15 +63,15 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                     mIdx = idx
                                     student_name.setText(name)
                                     mUmbrella = umbrella
-                                    toast(applicationContext, "이 학생의 현재 대여 우산수는 " + mUmbrella + "개 입니다.")
+                                    ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산수는 " + mUmbrella + "개 입니다.")
                                     checkSubmitColor()
                                 } else {
                                     student_name.setText("학번을 입력하면 표시됩니다")
-                                    toast(applicationContext, "학번에 맞는 학생이 없습니다!")
+                                    ToastUtils.show(this@AddRentActivity, "학번에 맞는 학생이 없습니다!")
                                 }
                             }
                         } else {
-                            toast(applicationContext, "학생정보를 불러오는 도중 오류가 발생했습니다!")
+                            ToastUtils.show(this@AddRentActivity, "학생정보를 불러오는 도중 오류가 발생했습니다!")
                         }
                     }
                 })
@@ -84,7 +85,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                 val addRent = Retro.apiInterface.addRent(mIdx, mDate, mUmbrella)
                 addRent.enqueue(object : retrofit2.Callback<ResponseBody> {
                     override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                        toast(applicationContext, "네트워크 연결에 실패했습니다!")
+                        ToastUtils.show(this@AddRentActivity, "네트워크 연결에 실패했습니다!")
                     }
 
                     override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
@@ -93,9 +94,9 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                             val stat: Status = gson.fromJson(response.body()?.string(), Status::class.java)
                             if (stat.status == "success") {
                                 clearField()
-                                toast(applicationContext, "성공적으로 추가되었습니다!")
+                                ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
                             } else {
-                                toast(applicationContext, stat.status)
+                                ToastUtils.show(this@AddRentActivity, stat.status)
                             }
                         }
                     }
@@ -103,7 +104,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
             } else {
                 //failed
-                toast(applicationContext, "모든 값을 입력해주세요!")
+                ToastUtils.show(this@AddRentActivity, "모든 값을 입력해주세요!")
             }
         }
         back_btn.setOnClickListener {

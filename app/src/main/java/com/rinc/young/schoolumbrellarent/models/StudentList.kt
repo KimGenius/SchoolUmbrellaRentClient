@@ -1,4 +1,4 @@
-package com.rinc.young.schoolumbrellarent.util
+package com.rinc.young.schoolumbrellarent.models
 
 import com.google.gson.annotations.SerializedName
 import com.rinc.young.schoolumbrellarent.models.Student
