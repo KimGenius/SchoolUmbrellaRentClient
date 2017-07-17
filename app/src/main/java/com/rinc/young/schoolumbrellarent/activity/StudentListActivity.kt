@@ -1,10 +1,10 @@
-package com.rinc.young.schoolumbrellarent.Activity
+package com.rinc.young.schoolumbrellarent.activity
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.inputmethod.EditorInfo
-import com.rinc.young.schoolumbrellarent.Adapter.StudentListAdapter
+import com.rinc.young.schoolumbrellarent.adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.models.StudentList
@@ -14,13 +14,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-@SuppressLint("Registered")
 /**
- * Created by young on 2017-07-11/오후 2:14
+ * Created by young on 2017-07-11/오후 2:09
  * This Project is SchoolUmbrellaRent
  */
 
-class StudentRentListActivity : BaseActivity() {
+class StudentListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
@@ -32,12 +31,12 @@ class StudentRentListActivity : BaseActivity() {
         search_student.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val find = Retro.apiInterface.findStudents(search_student.text.toString())
-                retroHandlerList(find)
+                retroHandlerList(this, find)
             }
             return@setOnEditorActionListener false
         }
-        val list = Retro.apiInterface.getRentList()
-        retroHandlerList(list)
+        val list = Retro.apiInterface.getStudentList()
+        retroHandlerList(this, list)
         var rentSc = "desc"
         var gradeSc = "asc"
         var sort: Call<StudentList>
@@ -51,7 +50,7 @@ class StudentRentListActivity : BaseActivity() {
                 gradeSc = "asc"
                 sort = Retro.apiInterface.sortStudents("num", gradeSc, rentSc)
             }
-            retroHandlerList(sort)
+            retroHandlerList(this, sort)
         }
         sort_rent.setOnClickListener {
             if (rentSc == "asc") {
@@ -63,7 +62,7 @@ class StudentRentListActivity : BaseActivity() {
                 rentSc = "asc"
                 sort = Retro.apiInterface.sortStudents("umbrella", gradeSc, rentSc)
             }
-            retroHandlerList(sort)
+            retroHandlerList(this, sort)
         }
 
         back_btn.setOnClickListener {
@@ -71,10 +70,10 @@ class StudentRentListActivity : BaseActivity() {
         }
     }
 
-    fun retroHandlerList(retro: Call<StudentList>) {
+    fun retroHandlerList(ctx: Context, retro: Call<StudentList>) {
         retro.enqueue(object : Callback<StudentList> {
             override fun onFailure(call: Call<StudentList>?, t: Throwable?) {
-                ToastUtils.show(this@StudentRentListActivity, "네트워크 연결 실패!")
+                ToastUtils.show(ctx, "네트워크 연결 실패!")
             }
 
             override fun onResponse(call: Call<StudentList>?, response: Response<StudentList>?) {
@@ -82,12 +81,12 @@ class StudentRentListActivity : BaseActivity() {
                     val res = response.body()!!
                     res.run {
                         if (status == "success") {
-                            val listsLayoutManager = GridLayoutManager(this@StudentRentListActivity, 1)
+                            val listsLayoutManager = GridLayoutManager(ctx, 1)
                             lists.layoutManager = listsLayoutManager
-                            val adapter = StudentListAdapter(this@StudentRentListActivity, data)
+                            val adapter = StudentListAdapter(ctx, data)
                             lists.adapter = adapter
                         } else {
-                            ToastUtils.show(this@StudentRentListActivity, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                            ToastUtils.show(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-package com.rinc.young.schoolumbrellarent.Adapter
+package com.rinc.young.schoolumbrellarent.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.rinc.young.schoolumbrellarent.Activity
+package com.rinc.young.schoolumbrellarent.activity
 
 import android.annotation.SuppressLint
 import android.graphics.Color

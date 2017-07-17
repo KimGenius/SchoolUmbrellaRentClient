@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:icon">
-        <activity android:name="com.rinc.young.schoolumbrellarent.Activity.SplashActivity">
+        <activity android:name="com.rinc.young.schoolumbrellarent.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.StudentListActivity" />
-        <activity android:name=".Activity.AddRentActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.StudentListActivity" />
+        <activity android:name=".activity.AddRentActivity" />
     </application>
 </manifest>

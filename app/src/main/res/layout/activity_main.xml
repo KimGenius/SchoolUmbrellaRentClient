@@ -9,7 +9,7 @@
     app:scale_base_width="100"
     app:scale_height="167.11"
     app:scale_width="100"
-    tools:context="com.rinc.young.schoolumbrellarent.Activity.MainActivity">
+    tools:context="com.rinc.young.schoolumbrellarent.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
