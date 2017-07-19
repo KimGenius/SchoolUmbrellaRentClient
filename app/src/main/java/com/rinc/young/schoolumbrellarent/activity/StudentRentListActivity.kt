@@ -3,6 +3,7 @@ package com.rinc.young.schoolumbrellarent.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.rinc.young.schoolumbrellarent.adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_student_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 @SuppressLint("Registered")
 /**

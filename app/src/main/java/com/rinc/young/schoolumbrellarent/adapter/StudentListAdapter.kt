@@ -12,11 +12,13 @@ import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
+import com.rinc.young.schoolumbrellarent.util.DateUtils
 import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.list_student_table.view.*
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by young on 2017-07-11/오후 2:50
@@ -26,6 +28,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
     var mJson = gsonData
     var mCtx = context
     var mType = type
+    val today = Calendar.getInstance()
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -38,6 +41,9 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                 reserve.text = mJson[position].umbrella
                 rent_date.text = mJson[position].date.substring(0, 10)
                 name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
+                if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
+                    name.setBackgroundColor(Color.parseColor("#ff444f"))
+                }
             }
             name.text = mJson [position].name
             val hagbun = mJson[position].num
