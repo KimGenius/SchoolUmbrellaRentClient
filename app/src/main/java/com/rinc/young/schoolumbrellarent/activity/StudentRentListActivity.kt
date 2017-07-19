@@ -3,14 +3,13 @@ package com.rinc.young.schoolumbrellarent.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.rinc.young.schoolumbrellarent.adapter.StudentListAdapter
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.models.StudentList
 import com.rinc.young.schoolumbrellarent.util.ToastUtils
-import kotlinx.android.synthetic.main.activity_student_list.*
+import kotlinx.android.synthetic.main.activity_student_rentlist.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,10 +24,10 @@ import retrofit2.Response
 class StudentRentListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_list)
+        setContentView(R.layout.activity_student_rentlist)
 
         val window = window
-        setStatusBar(window, "#F3B600")
+        setStatusBar(window, "#00b0f0")
 
         search_student.imeOptions = EditorInfo.IME_ACTION_DONE
         search_student.setOnEditorActionListener { _, actionId, _ ->

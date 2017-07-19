@@ -17,7 +17,6 @@ import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.list_student_table.view.*
 import retrofit2.Call
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -42,7 +41,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                 rent_date.text = mJson[position].date.substring(0, 10)
                 name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                 if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
-                    name.setBackgroundColor(Color.parseColor("#ff444f"))
+                    name.setBackgroundColor(Color.parseColor("#ff6890"))
                 }
             }
             name.text = mJson [position].name

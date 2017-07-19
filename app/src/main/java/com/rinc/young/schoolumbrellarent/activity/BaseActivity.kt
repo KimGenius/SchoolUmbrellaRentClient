@@ -21,6 +21,7 @@ open class BaseActivity : AppCompatActivity() {
         super.attachBaseContext(com.tsengvn.typekit.TypekitContextWrapper.wrap(newBase))
     }
 
+
     @SuppressLint("InlinedApi")
     fun setStatusBar(window: Window, color: String) {
         window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
