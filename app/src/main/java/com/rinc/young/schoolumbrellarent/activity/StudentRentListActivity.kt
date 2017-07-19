@@ -84,7 +84,7 @@ class StudentRentListActivity : BaseActivity() {
                         if (status == "success") {
                             val listsLayoutManager = GridLayoutManager(this@StudentRentListActivity, 1)
                             lists.layoutManager = listsLayoutManager
-                            val adapter = StudentListAdapter(this@StudentRentListActivity, data)
+                            val adapter = StudentListAdapter(this@StudentRentListActivity, data, "rent")
                             lists.adapter = adapter
                         } else {
                             ToastUtils.show(this@StudentRentListActivity, "학생리스트를 불러오는 도중 오류가 발생했습니다!")

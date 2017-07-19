@@ -30,5 +30,8 @@ class MainActivity : BaseActivity() {
         addrent_btn.setOnClickListener {
             startActivity(Intent(this@MainActivity, AddRentActivity::class.java))
         }
+        returnRentBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, StudentRentListActivity::class.java))
+        }
     }
 }

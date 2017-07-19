@@ -24,7 +24,7 @@ class SplashActivity : BaseActivity() {
             } else {
                 mainActivity = Intent(this@SplashActivity, LoginActivity::class.java)
             }
-            this@SplashActivity.startActivity(mainActivity)
+            startActivity(mainActivity)
             finish()
         }, SPLASH_DISPLAY_LENGTH.toLong())
 
