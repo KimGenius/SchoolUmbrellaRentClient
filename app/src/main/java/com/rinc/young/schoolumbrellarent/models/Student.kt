@@ -1,8 +1,4 @@
 package com.rinc.young.schoolumbrellarent.models
-
-import android.app.ActionBar
-import com.google.gson.annotations.SerializedName
-
 /**
  * Created by young on 2017-07-15/오후 2:29
  * This Project is SchoolUmbrellaRent
@@ -22,14 +18,14 @@ class Student {
         set(value) {
             field = value
         }
-    var num: String = ""
+    var student_num: String = ""
         get() {
             return field
         }
         set(value) {
             field = value
         }
-    var umbrella: String = ""
+    var umdx: String = ""
         get() {
             return field
         }

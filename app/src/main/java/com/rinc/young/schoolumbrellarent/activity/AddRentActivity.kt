@@ -62,7 +62,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                 if (status == "success") {
                                     mIdx = idx
                                     student_name.setText(name)
-                                    mUmbrella = umbrella
+                                    mUmbrella = umdx
                                     ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산수는 " + mUmbrella + "개 입니다.")
                                     checkSubmitColor()
                                 } else {

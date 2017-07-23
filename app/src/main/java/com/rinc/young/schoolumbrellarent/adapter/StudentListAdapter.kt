@@ -33,11 +33,11 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val gridViewHolder = holder as GridViewHolder
         gridViewHolder.itemView.run {
-            if (mJson[position].umbrella == "0") {
+            if (mJson[position].umdx == "0") {
                 reserve.text = "---"
                 rent_date.text = "---"
             } else {
-                reserve.text = mJson[position].umbrella
+                reserve.text = mJson[position].umdx
                 rent_date.text = mJson[position].date.substring(2, 10)
                 name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                 if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
@@ -45,7 +45,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                 }
             }
             name.text = mJson [position].name
-            val hagbun = mJson[position].num
+            val hagbun = mJson[position].student_num
             bun.text = hagbun.substring(3, 5)
             ban.text = hagbun.substring(1, 3)
             grade.text = hagbun.substring(0, 1)

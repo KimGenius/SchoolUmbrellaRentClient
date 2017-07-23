@@ -86,7 +86,7 @@ class StudentListActivity : BaseActivity() {
                             val adapter = StudentListAdapter(ctx, data)
                             lists.adapter = adapter
                         } else {
-                            ToastUtils.show(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!")
+                            ToastUtils.show(ctx, "학생리스트를 불러오는 도중 오류가 발생했습니다!" + status)
                         }
                     }
                 }
