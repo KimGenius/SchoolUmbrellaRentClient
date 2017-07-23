@@ -94,22 +94,25 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
         addrent_submit.setOnClickListener {
             if (getSubmit()) {
                 //success
-
                 val addRent = Retro.apiInterface.addRent(mIdx, mDate, umdx.text.toString().trim(), """$mUmbrella, ${umdx.text.toString().trim()}""")
-                addRent.enqueue(object : retrofit2.Callback<ResponseBody> {
-                    override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                addRent.enqueue(object : retrofit2.Callback<Status> {
+                    override fun onFailure(call: Call<Status>?, t: Throwable?) {
                         ToastUtils.show(this@AddRentActivity, "네트워크 연결에 실패했습니다!")
                     }
 
-                    override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                    override fun onResponse(call: Call<Status>?, response: Response<Status>?) {
                         if (response!!.isSuccessful) {
-                            val gson: Gson = Gson()
-                            val stat: Status = gson.fromJson(response.body()?.string(), Status::class.java)
-                            if (stat.status == "success") {
-                                clearField()
-                                ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
-                            } else {
-                                ToastUtils.show(this@AddRentActivity, stat.status)
+                            response.body()!!.run {
+                                if (status == "success") {
+                                    clearField()
+                                    ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
+                                } else if (status == "already umbrella") {
+                                    ToastUtils.show(this@AddRentActivity, "이미 대여중인 우산입니다!")
+                                } else if (status == "umbrella not found") {
+                                    ToastUtils.show(this@AddRentActivity, "찾을 수 없는 우산번호 입니다!")
+                                } else {
+                                    ToastUtils.show(this@AddRentActivity, status)
+                                }
                             }
                         }
                     }
@@ -140,6 +143,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
 
     fun clearField() {
         student_num.setText("")
+        umdx.setText("")
         student_name.setText("학번을 입력하면 표시됩니다")
         choice_date.setText("날짜를 선택해주세요")
         checkSubmitColor()

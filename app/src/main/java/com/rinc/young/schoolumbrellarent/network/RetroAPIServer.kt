@@ -1,5 +1,6 @@
 package com.rinc.young.schoolumbrellarent.network
 
+import com.rinc.young.schoolumbrellarent.activity.Status
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.models.StudentList
 import okhttp3.ResponseBody
@@ -18,7 +19,7 @@ interface RetroAPIServer {
 
     @FormUrlEncoded
     @POST("/addRent")
-    fun addRent(@Field("idx") idx: String, @Field("date") date: String, @Field("umdx") umdx: String, @Field("studentUmdx") studentUmdx: String): Call<ResponseBody>
+    fun addRent(@Field("idx") idx: String, @Field("date") date: String, @Field("umdx") umdx: String, @Field("studentUmdx") studentUmdx: String): Call<Status>
 
     @GET("/getStudentList")
     fun getStudentList(): Call<StudentList>
