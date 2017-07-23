@@ -18,13 +18,13 @@ interface RetroAPIServer {
 
     @FormUrlEncoded
     @POST("/addRent")
-    fun addRent(@Field("idx") idx: String, @Field("date") date: String, @Field("umbrella") umbrella: String): Call<ResponseBody>
+    fun addRent(@Field("idx") idx: String, @Field("date") date: String, @Field("umdx") umdx: String, @Field("studentUmdx") studentUmdx: String): Call<ResponseBody>
 
     @GET("/getStudentList")
     fun getStudentList(): Call<StudentList>
 
     @GET("/getStudent")
-    fun getStudent(@Query("num") num: String): Call<Student>
+    fun getStudent(@Query("student_num") num: String): Call<Student>
 
     @GET("/findStudents")
     fun findStudents(@Query("name") name: String): Call<StudentList>

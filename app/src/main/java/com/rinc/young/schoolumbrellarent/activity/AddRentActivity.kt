@@ -3,6 +3,7 @@ package com.rinc.young.schoolumbrellarent.activity
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.fourmob.datetimepicker.date.DatePickerDialog
 import com.google.gson.Gson
@@ -63,7 +64,11 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                     mIdx = idx
                                     student_name.setText(name)
                                     mUmbrella = umdx
-                                    ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산수는 " + mUmbrella + "개 입니다.")
+                                    if (mUmbrella == "0") {
+                                        ToastUtils.show(this@AddRentActivity, "이 학생은 현재 대여한 우산이 없습니다!")
+                                    } else {
+                                        ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산번호는 $mUmbrella 입니다.")
+                                    }
                                     checkSubmitColor()
                                 } else {
                                     student_name.setText("학번을 입력하면 표시됩니다")
@@ -79,10 +84,18 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             }
             return@setOnEditorActionListener false
         }
+        umdx.imeOptions = EditorInfo.IME_ACTION_DONE
+        umdx.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                checkSubmitColor()
+            }
+            return@setOnEditorActionListener false
+        }
         addrent_submit.setOnClickListener {
             if (getSubmit()) {
                 //success
-                val addRent = Retro.apiInterface.addRent(mIdx, mDate, mUmbrella)
+
+                val addRent = Retro.apiInterface.addRent(mIdx, mDate, umdx.text.toString().trim(), """$mUmbrella, ${umdx.text.toString().trim()}""")
                 addRent.enqueue(object : retrofit2.Callback<ResponseBody> {
                     override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
                         ToastUtils.show(this@AddRentActivity, "네트워크 연결에 실패했습니다!")
@@ -122,7 +135,7 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     }
 
     fun getSubmit(): Boolean {
-        return student_name.text.toString() != "학번을 입력하면 표시됩니다" && choice_date.text.toString() != "날짜를 선택해주세요"
+        return student_name.text.toString() != "학번을 입력하면 표시됩니다" && choice_date.text.toString() != "날짜를 선택해주세요" && umdx.text.toString().trim() != "" && Integer.parseInt(umdx.text.toString().trim()) > 0
     }
 
     fun clearField() {
