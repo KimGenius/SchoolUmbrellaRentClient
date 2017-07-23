@@ -28,9 +28,10 @@ class CustomDialog : android.app.Dialog {
             this.dismiss()
         }
 
-        mLeftButton.setOnClickListener(
-                event
-        )
+        mLeftButton.setOnClickListener {
+            event
+            this.dismiss()
+        }
         mLeftButton.text = btnText
         mContentView.text = text
     }
@@ -46,4 +47,6 @@ class CustomDialog : android.app.Dialog {
         this.text = text
         this.btnText = btnText
     }
+
 }
+

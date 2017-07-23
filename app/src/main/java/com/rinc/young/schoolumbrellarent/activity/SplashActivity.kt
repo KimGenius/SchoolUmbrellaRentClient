@@ -11,7 +11,7 @@ import com.rinc.young.schoolumbrellarent.util.SaveSharedPreference
  * This Project is SchoolUmbrellaRent
  */
 class SplashActivity : BaseActivity() {
-    private val SPLASH_DISPLAY_LENGTH = 1500
+    private val SPLASH_DISPLAY_LENGTH: Long = 1500
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity() {
             }
             startActivity(mainActivity)
             finish()
-        }, SPLASH_DISPLAY_LENGTH.toLong())
+        }, SPLASH_DISPLAY_LENGTH)
 
     }
 }

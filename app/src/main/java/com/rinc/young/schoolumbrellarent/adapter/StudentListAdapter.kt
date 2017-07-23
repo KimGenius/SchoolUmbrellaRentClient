@@ -38,7 +38,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                 rent_date.text = "---"
             } else {
                 reserve.text = mJson[position].umbrella
-                rent_date.text = mJson[position].date.substring(0, 10)
+                rent_date.text = mJson[position].date.substring(2, 10)
                 name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                 if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
                     name.setBackgroundColor(Color.parseColor("#ff6890"))
@@ -63,7 +63,8 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
 
                             override fun onResponse(call: Call<Student>?, response: Response<Student>?) {
                                 if (response!!.isSuccessful) {
-                                    Log.d("resp", "성공")
+                                    ToastUtils.show(gridViewHolder.itemView.context, "반납에 성공하셨습니다!")
+
                                 }
                             }
 
