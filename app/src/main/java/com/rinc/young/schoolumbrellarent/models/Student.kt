@@ -1,10 +1,25 @@
 package com.rinc.young.schoolumbrellarent.models
+
 /**
  * Created by young on 2017-07-15/오후 2:29
  * This Project is SchoolUmbrellaRent
  */
 class Student {
     var idx: String = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+    var udx: String = ""
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+    var sdx: String = ""
         get() {
             return field
         }

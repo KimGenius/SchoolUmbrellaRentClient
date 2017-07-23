@@ -33,23 +33,18 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val gridViewHolder = holder as GridViewHolder
         gridViewHolder.itemView.run {
-            if (mJson[position].umdx == "0") {
-                reserve.text = "---"
-                rent_date.text = "---"
-            } else {
-                reserve.text = mJson[position].umdx
-                rent_date.text = mJson[position].date.substring(2, 10)
-                name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
-                if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
-                    name.setBackgroundColor(Color.parseColor("#ff6890"))
-                }
-            }
             name.text = mJson [position].name
             val hagbun = mJson[position].student_num
             bun.text = hagbun.substring(3, 5)
             ban.text = hagbun.substring(1, 3)
             grade.text = hagbun.substring(0, 1)
+            rent_date.text = mJson[position].date.substring(2, 10)
             if (mType == "rent") {
+                reserve.text = mJson[position].udx
+                name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
+                if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
+                    name.setBackgroundColor(Color.parseColor("#ff6890"))
+                }
                 setOnClickListener {
                     var text = hagbun + "번 " + mJson[position].name + " 학생의 대여 날짜는 " + rent_date.text.toString() + "입니다"
                     text += "\n반납하시겠습니까?"
@@ -71,6 +66,17 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                         })
                     })
                     statusDialog.show()
+                }
+            } else {
+                if (mJson[position].umdx == "0") {
+                    reserve.text = "---"
+                    rent_date.text = "---"
+                } else {
+                    reserve.text = mJson[position].umdx
+                    name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
+                    if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
+                        name.setBackgroundColor(Color.parseColor("#ff6890"))
+                    }
                 }
             }
         }
