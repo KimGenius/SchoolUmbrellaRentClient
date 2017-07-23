@@ -37,5 +37,5 @@ interface RetroAPIServer {
     fun getRentList(): Call<StudentList>
 
     @GET("/returnRent")
-    fun returnRent(@Query("studentNum") studentNum: String): Call<Student>
+    fun returnRent(@Query("studentNum") studentNum: String, @Query("umdx") umdx: String): Call<Student>
 }

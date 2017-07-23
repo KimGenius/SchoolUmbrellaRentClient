@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.list_student_table.view.*
 import retrofit2.Call
 import retrofit2.Response
-import java.util.*
 
 /**
  * Created by young on 2017-07-11/오후 2:50
@@ -27,7 +25,6 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
     var mJson = gsonData
     var mCtx = context
     var mType = type
-    val today = Calendar.getInstance()
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -38,8 +35,8 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
             bun.text = hagbun.substring(3, 5)
             ban.text = hagbun.substring(1, 3)
             grade.text = hagbun.substring(0, 1)
-            rent_date.text = mJson[position].date.substring(2, 10)
             if (mType == "rent") {
+                rent_date.text = mJson[position].date.substring(2, 10)
                 reserve.text = mJson[position].udx
                 name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                 if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
@@ -49,8 +46,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                     var text = hagbun + "번 " + mJson[position].name + " 학생의 대여 날짜는 " + rent_date.text.toString() + "입니다"
                     text += "\n반납하시겠습니까?"
                     val statusDialog = CustomDialog(mCtx, text, "반납하기", View.OnClickListener {
-                        Log.d("resp", "click")
-                        val returnRent = Retro.apiInterface.returnRent(hagbun)
+                        val returnRent = Retro.apiInterface.returnRent(hagbun, mJson[position].udx)
                         returnRent.enqueue(object : retrofit2.Callback<Student> {
                             override fun onFailure(call: Call<Student>?, t: Throwable?) {
                                 ToastUtils.show(gridViewHolder.itemView.context, "네트워크 연결 실패!")
@@ -59,7 +55,6 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                             override fun onResponse(call: Call<Student>?, response: Response<Student>?) {
                                 if (response!!.isSuccessful) {
                                     ToastUtils.show(gridViewHolder.itemView.context, "반납에 성공하셨습니다!")
-
                                 }
                             }
 
@@ -72,6 +67,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                     reserve.text = "---"
                     rent_date.text = "---"
                 } else {
+                    rent_date.text = mJson[position].date.substring(2, 10)
                     reserve.text = mJson[position].umdx
                     name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                     if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
