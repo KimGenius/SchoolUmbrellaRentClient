@@ -64,11 +64,8 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                     mIdx = idx
                                     student_name.setText(name)
                                     mUmbrella = umdx
-                                    if (mUmbrella == "0") {
-                                        ToastUtils.show(this@AddRentActivity, "이 학생은 현재 대여한 우산이 없습니다!")
-                                    } else {
-                                        ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산번호는 $mUmbrella 입니다.")
-                                    }
+                                    if (mUmbrella == "0") ToastUtils.show(this@AddRentActivity, "이 학생은 현재 대여한 우산이 없습니다!")
+                                    else ToastUtils.show(this@AddRentActivity, "이 학생의 현재 대여 우산번호는 ${mUmbrella.substring(3, mUmbrella.length)}입니다.")
                                     checkSubmitColor()
                                 } else {
                                     student_name.setText("학번을 입력하면 표시됩니다")

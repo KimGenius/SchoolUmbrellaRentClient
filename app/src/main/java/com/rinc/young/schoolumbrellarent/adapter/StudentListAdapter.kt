@@ -46,7 +46,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                     var text = hagbun + "번 " + mJson[position].name + " 학생의 대여 날짜는 " + rent_date.text.toString() + "입니다"
                     text += "\n반납하시겠습니까?"
                     val statusDialog = CustomDialog(mCtx, text, "반납하기", View.OnClickListener {
-                        val returnRent = Retro.apiInterface.returnRent(hagbun, mJson[position].udx)
+                        val returnRent = Retro.apiInterface.returnRent(hagbun, """0, ${mJson[position].udx}""")
                         returnRent.enqueue(object : retrofit2.Callback<Student> {
                             override fun onFailure(call: Call<Student>?, t: Throwable?) {
                                 ToastUtils.show(gridViewHolder.itemView.context, "네트워크 연결 실패!")
@@ -68,7 +68,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                     rent_date.text = "---"
                 } else {
                     rent_date.text = mJson[position].date.substring(2, 10)
-                    reserve.text = mJson[position].umdx
+                    reserve.text = mJson[position].umdx.substring(3, mJson[position].umdx.length)
                     name.setTextColor(Color.parseColor("#ffc000"))//색 잘 적용해야됨 ㅇㅇ
                     if (DateUtils.calDate(mJson[position].date.substring(0, 10)) <= -3) {
                         name.setBackgroundColor(Color.parseColor("#ff6890"))
