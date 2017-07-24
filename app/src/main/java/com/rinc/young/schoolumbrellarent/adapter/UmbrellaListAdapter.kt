@@ -10,7 +10,6 @@ import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.models.Umbrella
 import com.rinc.young.schoolumbrellarent.util.SelectUmbrella
 import com.rinc.young.schoolumbrellarent.util.ToastUtils
-import kotlinx.android.synthetic.main.activity_add_rent.view.*
 import kotlinx.android.synthetic.main.list_umbrella.view.*
 
 /**
