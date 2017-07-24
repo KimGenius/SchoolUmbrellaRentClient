@@ -28,7 +28,6 @@ class StudentRentListActivity : BaseActivity() {
 
         val window = window
         setStatusBar(window, "#00b0f0")
-
         search_student.imeOptions = EditorInfo.IME_ACTION_DONE
         search_student.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -85,7 +84,7 @@ class StudentRentListActivity : BaseActivity() {
                         if (status == "success") {
                             val listsLayoutManager = GridLayoutManager(this@StudentRentListActivity, 1)
                             lists.layoutManager = listsLayoutManager
-                            val adapter = StudentListAdapter(this@StudentRentListActivity, data, "rent")
+                            val adapter = StudentListAdapter(this@StudentRentListActivity, data, "rent", this@StudentRentListActivity)
                             lists.adapter = adapter
                         } else {
                             ToastUtils.show(this@StudentRentListActivity, "학생리스트를 불러오는 도중 오류가 발생했습니다!")

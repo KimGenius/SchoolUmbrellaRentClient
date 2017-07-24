@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="대여여부▼"
+            android:text="우산번호▼"
             android:textColor="#343434"
             android:textStyle="bold"
             app:scale_height="8.89"

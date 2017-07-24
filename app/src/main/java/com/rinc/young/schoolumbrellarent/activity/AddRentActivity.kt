@@ -3,16 +3,13 @@ package com.rinc.young.schoolumbrellarent.activity
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import com.fourmob.datetimepicker.date.DatePickerDialog
-import com.google.gson.Gson
 import com.rinc.young.schoolumbrellarent.R
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_add_rent.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*

@@ -1,6 +1,7 @@
 package com.rinc.young.schoolumbrellarent.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
@@ -8,24 +9,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rinc.young.schoolumbrellarent.R
+import com.rinc.young.schoolumbrellarent.activity.StudentRentListActivity
 import com.rinc.young.schoolumbrellarent.models.Student
-import com.rinc.young.schoolumbrellarent.network.Retro
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
 import com.rinc.young.schoolumbrellarent.util.DateUtils
-import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.list_student_table.view.*
-import retrofit2.Call
-import retrofit2.Response
 
 /**
  * Created by young on 2017-07-11/오후 2:50
  * This Project is SchoolUmbrellaRent
  */
-class StudentListAdapter constructor(context: Context, gsonData: List<Student>, type: String = "noRent") : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var mJson = gsonData
-    var mCtx = context
-    var mType = type
+class StudentListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    constructor(context: Context, gsonData: List<Student>, type: String = "noRent") : super() {
+        this.mJson = gsonData
+        this.mCtx = context
+        this.mType = type
+    }
 
+    constructor(context: Context, gsonData: List<Student>, type: String = "noRent", acti: Activity) : super() {
+        this.mJson = gsonData
+        this.mCtx = context
+        this.mType = type
+        this.mActi = acti
+    }
+
+    var mJson: List<Student>
+    var mCtx: Context
+    var mType: String
+    lateinit var mActi: Activity
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val gridViewHolder = holder as GridViewHolder
@@ -45,21 +56,7 @@ class StudentListAdapter constructor(context: Context, gsonData: List<Student>, 
                 setOnClickListener {
                     var text = hagbun + "번 " + mJson[position].name + " 학생의 대여 날짜는 " + rent_date.text.toString() + "입니다"
                     text += "\n반납하시겠습니까?"
-                    val statusDialog = CustomDialog(mCtx, text, "반납하기", View.OnClickListener {
-                        val returnRent = Retro.apiInterface.returnRent(hagbun, """0, ${mJson[position].udx}""")
-                        returnRent.enqueue(object : retrofit2.Callback<Student> {
-                            override fun onFailure(call: Call<Student>?, t: Throwable?) {
-                                ToastUtils.show(gridViewHolder.itemView.context, "네트워크 연결 실패!")
-                            }
-
-                            override fun onResponse(call: Call<Student>?, response: Response<Student>?) {
-                                if (response!!.isSuccessful) {
-                                    ToastUtils.show(gridViewHolder.itemView.context, "반납에 성공하셨습니다!")
-                                }
-                            }
-
-                        })
-                    })
+                    val statusDialog = CustomDialog(mCtx, text, "반납하기", hagbun, mJson[position].udx, mActi)
                     statusDialog.show()
                 }
             } else {
