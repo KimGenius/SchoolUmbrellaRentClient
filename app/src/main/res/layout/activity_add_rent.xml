@@ -156,28 +156,40 @@
         app:scale_width="86.67">
 
         <TextView
+            android:id="@+id/selectUmbrella"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="우산번호 입력"
+            android:text="우산 선택"
             android:textColor="#343434"
             app:scale_height="5.56"
             app:scale_textsize="4.44"
             app:scale_width="86.67" />
 
-        <EditText
-            android:id="@+id/umdx"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/umbrellaList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/addrent_editback_on"
-            android:hint="우산번호를 입력해주세요"
-            android:inputType="number"
-            android:paddingLeft="16dp"
-            android:textColor="#787878"
-            android:textColorHint="#787878"
-            app:scale_height="11.11"
-            app:scale_textsize="3.89"
+            android:orientation="horizontal"
+            app:scale_height="14"
             app:scale_top="7.5"
-            app:scale_width="86.67" />
+            app:scale_width="86.67">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <!--<EditText-->
+        <!--android:id="@+id/umdx"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/addrent_editback_on"-->
+        <!--android:hint="우산번호를 입력해주세요"-->
+        <!--android:inputType="number"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:textColor="#787878"-->
+        <!--android:textColorHint="#787878"-->
+        <!--app:scale_height="11.11"-->
+        <!--app:scale_textsize="3.89"-->
+        <!--app:scale_top="7.5"-->
+        <!--app:scale_width="86.67" />-->
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <Button

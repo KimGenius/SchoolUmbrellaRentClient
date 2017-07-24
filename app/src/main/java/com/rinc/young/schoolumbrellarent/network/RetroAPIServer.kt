@@ -3,6 +3,7 @@ package com.rinc.young.schoolumbrellarent.network
 import com.rinc.young.schoolumbrellarent.activity.Status
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.models.StudentList
+import com.rinc.young.schoolumbrellarent.models.UmbrellaList
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -38,4 +39,7 @@ interface RetroAPIServer {
 
     @GET("/returnRent")
     fun returnRent(@Query("studentNum") studentNum: String, @Query("umdx") umdx: String): Call<Student>
+
+    @GET("/getUmbrellas")
+    fun getUmbrellas(): Call<UmbrellaList>
 }

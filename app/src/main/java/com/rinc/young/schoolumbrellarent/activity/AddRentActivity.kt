@@ -1,13 +1,18 @@
 package com.rinc.young.schoolumbrellarent.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.inputmethod.EditorInfo
 import com.fourmob.datetimepicker.date.DatePickerDialog
 import com.rinc.young.schoolumbrellarent.R
+import com.rinc.young.schoolumbrellarent.adapter.UmbrellaListAdapter
 import com.rinc.young.schoolumbrellarent.models.Student
+import com.rinc.young.schoolumbrellarent.models.UmbrellaList
 import com.rinc.young.schoolumbrellarent.network.Retro
+import com.rinc.young.schoolumbrellarent.util.SelectUmbrella
 import com.rinc.young.schoolumbrellarent.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_add_rent.*
 import retrofit2.Call
@@ -78,17 +83,34 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             }
             return@setOnEditorActionListener false
         }
-        umdx.imeOptions = EditorInfo.IME_ACTION_DONE
-        umdx.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                checkSubmitColor()
+//        umdx.imeOptions = EditorInfo.IME_ACTION_DONE
+//        umdx.setOnEditorActionListener { _, actionId, _ ->
+//            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//                checkSubmitColor()
+//            }
+//            return@setOnEditorActionListener false
+//        }
+        val getUmbrellas = Retro.apiInterface.getUmbrellas()
+        getUmbrellas.enqueue(object : retrofit2.Callback<UmbrellaList> {
+            override fun onFailure(call: Call<UmbrellaList>?, t: Throwable?) {
+
             }
-            return@setOnEditorActionListener false
-        }
+
+            override fun onResponse(call: Call<UmbrellaList>?, response: Response<UmbrellaList>?) {
+                if (response!!.isSuccessful) {
+                    response.body()!!.run {
+                        val listsLayoutManager = LinearLayoutManager(this@AddRentActivity, LinearLayoutManager.HORIZONTAL, false)
+                        umbrellaList.layoutManager = listsLayoutManager
+                        val adapter = UmbrellaListAdapter(this@AddRentActivity, umbrellas)
+                        umbrellaList.adapter = adapter
+                    }
+                }
+            }
+        })
         addrent_submit.setOnClickListener {
             if (getSubmit()) {
                 //success
-                val addRent = Retro.apiInterface.addRent(mIdx, mDate, umdx.text.toString().trim(), """$mUmbrella, ${umdx.text.toString().trim()}""")
+                val addRent = Retro.apiInterface.addRent(mIdx, mDate, SelectUmbrella.idx, """$mUmbrella, ${SelectUmbrella.idx}""")
                 addRent.enqueue(object : retrofit2.Callback<Status> {
                     override fun onFailure(call: Call<Status>?, t: Throwable?) {
                         ToastUtils.show(this@AddRentActivity, "네트워크 연결에 실패했습니다!")
@@ -100,6 +122,8 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                                 if (status == "success") {
                                     clearField()
                                     ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
+                                    finish()
+                                    startActivity(Intent(this@AddRentActivity, AddRentActivity::class.java))
                                 } else if (status == "already umbrella") {
                                     ToastUtils.show(this@AddRentActivity, "이미 대여중인 우산입니다!")
                                 } else if (status == "umbrella not found") {
@@ -132,12 +156,11 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     }
 
     fun getSubmit(): Boolean {
-        return student_name.text.toString() != "학번을 입력하면 표시됩니다" && choice_date.text.toString() != "날짜를 선택해주세요" && umdx.text.toString().trim() != "" && Integer.parseInt(umdx.text.toString().trim()) > 0
+        return student_name.text.toString() != "학번을 입력하면 표시됩니다" && choice_date.text.toString() != "날짜를 선택해주세요" && Integer.parseInt(SelectUmbrella.idx) > 0
     }
 
     fun clearField() {
         student_num.setText("")
-        umdx.setText("")
         student_name.setText("학번을 입력하면 표시됩니다")
         choice_date.setText("날짜를 선택해주세요")
         checkSubmitColor()
