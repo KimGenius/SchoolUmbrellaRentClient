@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.view.inputmethod.EditorInfo
 import com.fourmob.datetimepicker.date.DatePickerDialog
 import com.rinc.young.schoolumbrellarent.R
@@ -83,23 +83,16 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
             }
             return@setOnEditorActionListener false
         }
-//        umdx.imeOptions = EditorInfo.IME_ACTION_DONE
-//        umdx.setOnEditorActionListener { _, actionId, _ ->
-//            if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                checkSubmitColor()
-//            }
-//            return@setOnEditorActionListener false
-//        }
         val getUmbrellas = Retro.apiInterface.getUmbrellas()
         getUmbrellas.enqueue(object : retrofit2.Callback<UmbrellaList> {
             override fun onFailure(call: Call<UmbrellaList>?, t: Throwable?) {
-
+                ToastUtils.show(this@AddRentActivity, "네트워크 연결 실패!")
             }
 
             override fun onResponse(call: Call<UmbrellaList>?, response: Response<UmbrellaList>?) {
                 if (response!!.isSuccessful) {
                     response.body()!!.run {
-                        val listsLayoutManager = LinearLayoutManager(this@AddRentActivity, LinearLayoutManager.HORIZONTAL, false)
+                        val listsLayoutManager = GridLayoutManager(this@AddRentActivity, GridLayoutManager.VERTICAL)
                         umbrellaList.layoutManager = listsLayoutManager
                         val adapter = UmbrellaListAdapter(this@AddRentActivity, umbrellas)
                         umbrellaList.adapter = adapter

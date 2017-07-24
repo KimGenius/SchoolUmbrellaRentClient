@@ -8,18 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:scale_base_height="14"
-        app:scale_base_width="20"
+        app:scale_base_width="100"
         app:scale_height="14"
-        app:scale_width="20">
+        app:scale_width="100">
 
         <TextView
             android:id="@+id/umbrella"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:gravity="center"
             app:scale_height="14"
-            app:scale_textsize="4"
-            app:scale_width="20" />
+            app:scale_textsize="7"
+            app:scale_width="100" />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 </LinearLayout>

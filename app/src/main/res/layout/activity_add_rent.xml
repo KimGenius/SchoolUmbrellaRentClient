@@ -148,9 +148,9 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:scale_base_height="18.61"
+        app:scale_base_height="41.5"
         app:scale_base_width="86.67"
-        app:scale_height="18.61"
+        app:scale_height="41.5"
         app:scale_left="6.67"
         app:scale_top="98.06"
         app:scale_width="86.67">
@@ -169,8 +169,7 @@
             android:id="@+id/umbrellaList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:scale_height="14"
+            app:scale_height="34"
             app:scale_top="7.5"
             app:scale_width="86.67">
 

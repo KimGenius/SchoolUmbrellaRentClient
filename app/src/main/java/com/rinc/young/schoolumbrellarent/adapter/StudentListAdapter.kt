@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rinc.young.schoolumbrellarent.R
-import com.rinc.young.schoolumbrellarent.activity.StudentRentListActivity
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
 import com.rinc.young.schoolumbrellarent.util.DateUtils

@@ -26,6 +26,7 @@ class UmbrellaListAdapter(context: Context, gsonData: List<Umbrella>) : Recycler
             umbrella.text = mJson[position].idx
             if (mJson[position].status != "0") {
                 umbrella.setBackgroundColor(Color.parseColor("#ff444f"))
+                umbrella.setTextColor(Color.parseColor("#FFFFFF"))
             } else {
                 umbrella.setOnClickListener {
                     SelectUmbrella.idx = mJson[position].idx
