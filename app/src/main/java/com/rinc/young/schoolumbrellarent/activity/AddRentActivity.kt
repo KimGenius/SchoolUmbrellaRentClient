@@ -36,8 +36,6 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_rent)
-
-        val window = window
         setStatusBar(window, "#86BF48")
 
         val calendar = Calendar.getInstance()
@@ -112,17 +110,16 @@ class AddRentActivity : BaseActivity(), DatePickerDialog.OnDateSetListener {
                     override fun onResponse(call: Call<Status>?, response: Response<Status>?) {
                         if (response!!.isSuccessful) {
                             response.body()!!.run {
-                                if (status == "success") {
-                                    clearField()
-                                    ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
-                                    finish()
-                                    startActivity(Intent(this@AddRentActivity, AddRentActivity::class.java))
-                                } else if (status == "already umbrella") {
-                                    ToastUtils.show(this@AddRentActivity, "이미 대여중인 우산입니다!")
-                                } else if (status == "umbrella not found") {
-                                    ToastUtils.show(this@AddRentActivity, "찾을 수 없는 우산번호 입니다!")
-                                } else {
-                                    ToastUtils.show(this@AddRentActivity, status)
+                                when (status) {
+                                    "success" -> {
+                                        clearField()
+                                        ToastUtils.show(this@AddRentActivity, "성공적으로 추가되었습니다!")
+                                        finish()
+                                        startActivity(Intent(this@AddRentActivity, AddRentActivity::class.java))
+                                    }
+                                    "already umbrella" -> ToastUtils.show(this@AddRentActivity, "이미 대여중인 우산입니다!")
+                                    "umbrella not found" -> ToastUtils.show(this@AddRentActivity, "찾을 수 없는 우산번호 입니다!")
+                                    else -> ToastUtils.show(this@AddRentActivity, status)
                                 }
                             }
                         }

@@ -5,32 +5,8 @@ package com.rinc.young.schoolumbrellarent.models
  * This Project is SchoolUmbrellaRent
  */
 class Umbrella {
-    var idx = ""
-        get() {
-            return field
-        }
-        set(value) {
-            field = value
-        }
-    var udx = ""
-        get() {
-            return field
-        }
-        set(value) {
-            field = value
-        }
-    var status = ""
-        get() {
-            return field
-        }
-        set(value) {
-            field = value
-        }
+    var idx = 0
+    var udx = 0
+    var status = 0
     var date = ""
-        get() {
-            return field
-        }
-        set(value) {
-            field = value
-        }
 }

@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
         val window = window
         setStatusBar(window, "#16171E")
 
-        main_title.text = "SMC 학생회 " + SaveSharedPreference.getUserName(this) + "님"
+        main_title.text = """SMC 학생회 ${SaveSharedPreference.getUserName(this)}님"""
         setButtonAction()
     }
 

@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity() {
         GlideUtils.setImage(this, R.drawable.login_back, background)
 
         login_submit.setOnClickListener {
-            val login = Retro.apiInterface.login(login_id.text.toString(), login_pw.text.toString());
+            val login = Retro.apiInterface.login(login_id.text.toString(), login_pw.text.toString())
             login.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                     if (response!!.isSuccessful) {

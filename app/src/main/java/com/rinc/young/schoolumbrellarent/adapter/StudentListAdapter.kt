@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rinc.young.schoolumbrellarent.R
+import com.rinc.young.schoolumbrellarent.holder.GridViewHolder
 import com.rinc.young.schoolumbrellarent.models.Student
 import com.rinc.young.schoolumbrellarent.util.CustomDialog
 import com.rinc.young.schoolumbrellarent.util.DateUtils
@@ -86,4 +87,3 @@ class StudentListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 }
 
-class GridViewHolder(v: View) : RecyclerView.ViewHolder(v)
